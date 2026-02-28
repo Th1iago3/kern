@@ -9,58 +9,27 @@
   <h1>🛡️ kern.py — CS2 Memory Dumper</h1>
 
   <p>
-    <strong>Ferramenta externa 100% sem injeção para leitura de memória do Counter-Strike 2</strong><br/>
-    Extrai entidades vivas (jogadores), offsets frescos do cs2-dumper, posições 3D, nomes, vida, time, arma ativa, armadura e salva dump completo.
-  </p>
-
-  <p>
-    <strong>Autor original:</strong> <a href="https://x.com/5n6xc1">@5n6xc1</a><br/>
-    <strong>Manutenção & Documentação:</strong> <a href="https://x.com/Aleatoriam3695">@Aleatoriam3695</a> • Alagoas, BR • 2026
+    <strong>Autor original:</strong> <a href="https://instagram.com/5n6xc1">@5n6xc1</a><br/>
   </p>
 
 </div>
 
 <br/>
 
-## 🔥 Visão Geral
+## 1. Visão Geral
 
-**kern.py** (também chamado cript-kern.py) é uma ferramenta **externa** (external memory reading) que:
+**kern.py** é uma ferramenta **externa** (external memory reading) que:
 
 - Abre o processo `cs2.exe` com privilégios elevados
 - Baixa automaticamente offsets e schemas mais recentes do [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
-- Itera pela entity list moderna do CS2 (GameEntitySystem + particionamento)
+- Itera pela entity list moderna do CS2 (GameEntitySystem)
 - Extrai dados reais de jogadores vivos (exclui local player)
-- Gera dump organizado em pasta com timestamp + ID randômico
-- Salva JSON resumido + todos os ~30 arquivos JSON/CS/CPP do dumper
-
-**Ideal para:**
-- Estudo de reverse engineering
-- Desenvolvimento de ferramentas externas
-- Análise offline de memória
-- Pesquisa acadêmica / security
-
-> ⚠️ **Aviso Legal & Ético**  
-> Este projeto é **apenas para fins educacionais, offline e de pesquisa**.  
-> Uso em matchmaking online viola os termos da Valve → risco de **VAC ban permanente**.  
-> Use **exclusivamente** em servidores locais/privados com permissão explícita.
+- Gera dump organizado em pasta 
+- Salva os ~30 arquivos JSON/CS/CPP do dumper
 
 <br/>
 
-## ✨ Funcionalidades Principais
-
-- [x] Elevação automática de privilégios (UAC)
-- [x] Leitura externa pura (sem WriteProcessMemory ou injeção)
-- [x] Atualização automática de offsets via GitHub raw
-- [x] Suporte à entity list CS2 (pós-2023/2024)
-- [x] Extração rica: nome sanitizado, health, team, origin (XYZ), active weapon handle, armor
-- [x] Dump completo do cs2-dumper + local_dump.json
-- [x] Console colorido (colorama)
-- [x] Tratamento de erros robusto
-- [x] Compatível Win10 x64 + Win11 x64
-
-<br/>
-
-## 📊 Exemplo de Saída (Console)
+## 2. Exemplo de Saída (Console)
 
 ```
 highest: 2048
@@ -85,7 +54,7 @@ dump_20260228_0211_xyz789/
 
 <br/>
 
-## ⚙️ Offsets & Estruturas Principais (2025–2026)
+## 3. Offsets & Estruturas Principais (2025–2026)
 
 | Campo / Offset                        | Valor Exemplo (pode variar) | Classe Principal              | Descrição Principal                          |
 |---------------------------------------|-----------------------------|-------------------------------|----------------------------------------------|
@@ -104,7 +73,7 @@ dump_20260228_0211_xyz789/
 
 <br/>
 
-## 🚀 Instalação Rápida
+## 4. Instalação Rápida
 
 ### Requisitos
 
@@ -115,13 +84,11 @@ dump_20260228_0211_xyz789/
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/Th1iago3/kern.git
+git clone https://github.com/Th1iago3/kern
 cd kern
 
 # 2. Instale dependências
 pip install pymem requests colorama
-# ou com requirements (se criar um arquivo depois)
-# pip install -r requirements.txt
 ```
 
 <br/>
@@ -130,7 +97,7 @@ pip install pymem requests colorama
 
 ```bash
 # Rode SEMPRE como Administrador
-python kern.py
+python3 kern.py
 # ou
 py -3 kern.py
 ```
@@ -146,18 +113,9 @@ O que acontece:
 
 <br/>
 
-## 🛠️ Roadmap & Melhorias Futuras
-
-- [ ] Suporte a múltiplos processos (se tiver mais de um cs2.exe)
-- [ ] Filtro por time / distância / visibilidade (FOV check básico)
-- [ ] Exportação para CSV / SQLite
-- [ ] Cache de offsets (evitar download toda vez)
-- [ ] Suporte Linux + wine (experimental)
-- [ ] Interface gráfica simples (tkinter ou dearpygui)
-
 <br/>
 
-## 🤝 Contribuição
+## 5. Contribuição
 
 Contribuições são super bem-vindas!
 
@@ -171,7 +129,7 @@ Por favor, siga o estilo de código existente e adicione comentários em PT-BR.
 
 <br/>
 
-## 🔒 Segurança & Ética
+## 6. Segurança & Ética
 
 - **Não** use em contas principais
 - **Não** distribua binários compilados
@@ -180,7 +138,7 @@ Por favor, siga o estilo de código existente e adicione comentários em PT-BR.
 
 <br/>
 
-## 🌍 Versões em Outros Idiomas
+## 7. Versões em Outros Idiomas
 
 ### Français
 
@@ -195,10 +153,7 @@ Descarga offsets actualizados, lee lista de entidades, extrae jugadores vivos y 
 <br/>
 
 <div align="center">
-
   <br/>
-  <b>Feito com ☕, reverse engineering e paciência infinita • 2026</b><br/>
-  <sub>Dúvidas? Abre issue ou chama no X → <a href="https://x.com/Aleatoriam3695">@Aleatoriam3695</a></sub>
-
+  <b>Feito com ☕ • 2026</b><br/>
 </div>
 ```
