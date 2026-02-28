@@ -42,7 +42,7 @@ entity 5:
   armor: 100
 ...
 SUCCESS
-pasta gerada: dump_20260228_0211_xyz789
+dump_20260228_0211_xyz789
 ```
 
 ### Principais offsets e campos usados (valores aproximados — mudam por update)
