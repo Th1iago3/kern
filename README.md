@@ -23,7 +23,6 @@
 - Abre o processo `cs2.exe` com privilégios elevados
 - Baixa automaticamente offsets e schemas mais recentes do [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
 - Itera pela entity list moderna do CS2 (GameEntitySystem)
-- Extrai dados reais de jogadores vivos (exclui local player)
 - Gera dump organizado em pasta 
 - Salva os ~30 arquivos JSON/CS/CPP do dumper
 
@@ -129,16 +128,10 @@ Por favor, siga o estilo de código existente e adicione comentários em PT-BR.
 
 <br/>
 
-## 6. Segurança & Ética
-
-- **Não** use em contas principais
-- **Não** distribua binários compilados
-- **Não** publique offsets fixos (sempre dinâmico)
-- Teste apenas offline ou em servidores privados
 
 <br/>
 
-## 7. Versões em Outros Idiomas
+## 6. Versões em Outros Idiomas
 
 ### Français
 
