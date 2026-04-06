@@ -11,17 +11,7 @@
 Autor original: [@5n6xc1](https://instagram.com/5n6xc1)
 
 Este script faz leitura externa da memória do processo `cs2.exe` (sem injeção).  
-Ele baixa automaticamente os offsets e schemas mais recentes do repositório [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper), percorre a entity list atual do CS2 (GameEntitySystem) e gera um dump organizado em pasta com todos os arquivos JSON, .cs e .cpp baixados.
-
-### O que o script faz em sequência
-
-1. Verifica se está rodando como administrador (pede elevação se necessário)
-2. Abre o processo `cs2.exe`
-3. Baixa os offsets e schemas (~30 arquivos)
-4. Lê os principais ponteiros (entity list, local player, viewmatrix, highest entity index)
-5. Itera pela lista de entidades e coleta informações dos jogadores
-6. Mostra no console um resumo dos players vivos
-7. Cria uma pasta com nome `dump_YYYYMMDD_HHMM_abcdef` e salva tudo lá
+Ele extrai automaticamente os offsets e schemas mais recentes, percorre a entity list atual do CS2 (GameEntitySystem) e gera um dump organizado em pasta com todos os arquivos JSON, .cs e .cpp baixados.
 
 Exemplo de saída no console:
 
