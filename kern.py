@@ -1,8 +1,30 @@
-import sys,os,ctypes,pymem,requests,json,time,random,string,struct
+import psutil
+import sys,os,ctypes,pymem,subprocess,json,time,random,string,struct
 from ctypes import wintypes
 import time
 import colorama
 from colorama import Fore
+import httpx
+
+## iniciar colorama 
+colorama.init(autoreset=True)
+
+def op(processF):
+ for process in psutil.process_iter():
+  if process.name() == processF:return
+ if sys.platform == "win32":
+  try:subprocess.Popen("steam://rungameid/730", shell=True);time.sleep(5)
+  except:pass
+ while True:
+  for process in psutil.process_iter():
+   if process.name() == processF:return
+
+def rdm():
+ return "".join(random.choices(string.ascii_letters + string.digits, k=8))
+def fk():
+ try:import shutil;n=f"{rdm()}.py";shutil.copy(sys.argv[0],n);subprocess.Popen([sys.executable,n]);sys.exit(0)
+ except:pass
+
 def clear():
  os.system('cls' if os.name=='nt' else 'clear')
 if not ctypes.windll.shell32.IsUserAnAdmin():
@@ -17,8 +39,22 @@ ReadProcessMemory.argtypes=[wintypes.HANDLE,wintypes.LPCVOID,wintypes.LPVOID,cty
 ReadProcessMemory.restype=wintypes.BOOL
 PROCESS_ALL_ACCESS=0x1F0FFF
 def g(u,i):
- try:r=requests.get(u,timeout=10);r.raise_for_status();return r.json()if i else r.text
+ try:r=httpx.get(u,timeout=10);r.raise_for_status();return r.json()if i else r.text
  except Exception as e:print(f"Erro ao baixar {u}: {e}");return None
+
+def i(type, args, *kwargs):
+ if type == "info":
+  print(f"{Fore.YELLOW}[ ! ]: {args[0]}{Fore.RESET}")
+ elif type == "error":
+  print(f"{Fore.RED}[ - ]: {args[0]}{Fore.RESET}")
+ elif type == "warn":
+  print(f"{Fore.YELLOW}[ * ]: {args[0]}{Fore.RESET}")
+ elif type == "success":
+  print(f"{Fore.GREEN}[ + ]: {args[0]}{Fore.RESET}")
+ else:
+  print(args[0])
+
+ print()
 def h(p,a,s=8):
  b=ctypes.create_string_buffer(s)
  if not ReadProcessMemory(p,a,b,s,None):return 0
@@ -73,18 +109,21 @@ def j(p,el,lp,cl_base,cl,co):
 def main():
  clear()
  time.sleep(0.5)
+ print("#############################")
  print("#   FEITO POR: @5n6xc1       #")
+ print("#############################")
  try:k()
  except Exception as e:print(f"Erro: {e}")
  finally:input()
 def k():
  try:pm=pymem.Pymem("cs2.exe")
  except:print("CS2 nao encontrado");return
+ op("cs2.exe")
  pid=pm.process_id
  h_process=OpenProcess(PROCESS_ALL_ACCESS,False,pid)
  if not h_process:print("Falha ao abrir processo");return
  base_url="https://raw.githubusercontent.com/a2x/cs2-dumper/main/output/"
- files=["animationsystem_dll.cs","animationsystem_dll.hpp","animationsystem_dll.json","animationsystem_dll.rs","buttons.cs","buttons.hpp","buttons.json","buttons.rs","client_dll.cs","client_dll.hpp","client_dll.json","client_dll.rs","engine2_dll.cs","engine2_dll.hpp","engine2_dll.json","engine2_dll.rs","host_dll.cs","host_dll.hpp","host_dll.json","host_dll.rs","info.json","interfaces.cs","interfaces.hpp","interfaces.json","interfaces.rs","materialsystem2_dll.cs","materialsystem2_dll.hpp","materialsystem2_dll.json","materialsystem2_dll.rs","meshsystem_dll.cs","meshsystem_dll.hpp","meshsystem_dll.json","meshsystem_dll.rs","networksystem_dll.cs","networksystem_dll.hpp","networksystem_dll.json","networksystem_dll.rs","offsets.cs","offsets.hpp","offsets.json","offsets.rs","panorama_dll.cs","panorama_dll.hpp","panorama_dll.json","panorama_dll.rs","particles_dll.cs","particles_dll.hpp","particles_dll.json","particles_dll.rs","pulse_system_dll.cs","pulse_system_dll.hpp","pulse_system_dll.json","pulse_system_dll.rs","rendersystemdx11_dll.cs","rendersystemdx11_dll.hpp","rendersystemdx11_dll.json","rendersystemdx11_dll.rs","scenesystem_dll.cs","scenesystem_dll.hpp","scenesystem_dll.json","scenesystem_dll.rs","schemasystem_dll.cs","schemasystem_dll.hpp","schemasystem_dll.json","schemasystem_dll.rs","server_dll.cs","server_dll.hpp","server_dll.json","server_dll.rs","soundsystem_dll.cs","soundsystem_dll.hpp","soundsystem_dll.json","soundsystem_dll.rs","steamaudio_dll.cs","steamaudio_dll.hpp","steamaudio_dll.json","steamaudio_dll.rs","vphysics2_dll.cs","vphysics2_dll.hpp","vphysics2_dll.json","vphysics2_dll.rs","worldrenderer_dll.cs","worldrenderer_dll.hpp","worldrenderer_dll.json","worldrenderer_dll.rs"]
+ files=["animationsystem_dll.cs","animationsystem_dll.hpp","animationsystem_dll.json","animationsystem_dll.rs","buttons.cs","buttons.hpp","buttons.json","buttons.rs","client_dll.cs","client_dll.hpp","client_dll.json","client_dll.rs","engine2_dll.cs","engine2_dll.hpp","engine2_dll.json","engine2_dll.rs","host_dll.cs","host_dll.hpp","host_dll.json","host_dll.rs","info.json","interfaces.cs","interfaces.hpp","interfaces.json","interfaces.rs","materialsystem2_dll.cs","materialsystem2_dll.hpp","materialsystem2_dll.json","materialsystem2_dll.rs","networksystem_dll.cs","networksystem_dll.hpp","networksystem_dll.json","networksystem_dll.rs","offsets.cs","offsets.hpp","offsets.json","offsets.rs","panorama_dll.cs","panorama_dll.hpp","panorama_dll.json","panorama_dll.rs","particles_dll.cs","particles_dll.hpp","particles_dll.json","particles_dll.rs","pulse_system_dll.cs","pulse_system_dll.hpp","pulse_system_dll.json","pulse_system_dll.rs","rendersystemdx11_dll.cs","rendersystemdx11_dll.hpp","rendersystemdx11_dll.json","rendersystemdx11_dll.rs","scenesystem_dll.cs","scenesystem_dll.hpp","scenesystem_dll.json","scenesystem_dll.rs","schemasystem_dll.cs","schemasystem_dll.hpp","schemasystem_dll.json","schemasystem_dll.rs","server_dll.cs","server_dll.hpp","server_dll.json","server_dll.rs","soundsystem_dll.cs","soundsystem_dll.hpp","soundsystem_dll.json","soundsystem_dll.rs","steamaudio_dll.cs","steamaudio_dll.hpp","steamaudio_dll.json","steamaudio_dll.rs","vphysics2_dll.cs","vphysics2_dll.hpp","vphysics2_dll.json","vphysics2_dll.rs","worldrenderer_dll.cs","worldrenderer_dll.hpp","worldrenderer_dll.json","worldrenderer_dll.rs"]
  offs=g(base_url+"offsets.json",True)
  if offs is None:return
  co=g(base_url+"client_dll.json",True)
@@ -123,19 +162,18 @@ def k():
  os.mkdir(dirn)
  total=len(files)
  for idx,f in enumerate(files):
-  i=f.endswith('.json')
+  is_json=f.endswith('.json')
   sys.stdout.write(f"\r[{('#' * (idx+1)).ljust(total)}] {f}")
   sys.stdout.flush()
-  jd=g(base_url+f,i)
+  jd=g(base_url+f,is_json)
   if jd is None:continue
   with open(f"{dirn}/{f}","w",encoding='utf-8')as wf:
-   if i:json.dump(jd,wf,indent=2)
+   if is_json:json.dump(jd,wf,indent=2)
    else:wf.write(jd)
  sys.stdout.write(f"\r[{('#' * total)}] Done\n")
  sys.stdout.flush()
  with open(f"{dirn}/local_dump.json","w")as wf:json.dump(d,wf,indent=2)
- print(f"{Fore.GREEN}[ + ]: SUCCESS !!{Fore.RESET}")
- print(f"\033[93m{dirn}\033[0m")
+ i("success", [f"{dirn}"], {})
  kernel32.CloseHandle(h_process)
 if __name__ == "__main__":
  main()
