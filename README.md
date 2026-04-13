@@ -10,7 +10,7 @@
 
 Autor original: [@5n6xc1](https://instagram.com/5n6xc1)
 
-Este script faz leitura externa da memória do processo `cs2.exe` (sem injeção).  
+Este script faz leitura externa da memória do processo `cs2.exe`.  
 Ele extrai automaticamente os offsets e schemas mais recentes, percorre a entity list atual do CS2 (GameEntitySystem) e gera um dump organizado em pasta com todos os arquivos JSON, .cs e .cpp baixados.
 
 Exemplo de saída no console:
